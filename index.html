@@ -249,7 +249,33 @@ nav a.active kbd { color: hsl(var(--rurikon-600)); }
 /* about = negro (default rurikon ramp, no override) */
 /* work = azul, projects = rojo, writing = verde */
 
-/* kbd ALWAYS in its medium tone, regardless of section active */
+/* Each tab label always shows its own ink color — opaque when inactive,
+   dark/saturated when active. kbd matches. */
+
+/* INACTIVE — opaque/muted ink (light mode) */
+nav a[data-page="about"]    { color: hsl(222 14% 55%); }
+nav a[data-page="work"]     { color: hsl(220 35% 50%); }
+nav a[data-page="projects"] { color: hsl(354 38% 55%); }
+nav a[data-page="writing"]  { color: hsl(135 28% 42%); }
+
+/* INACTIVE — dark mode (lighter, brighter) */
+html.theme-dark nav a[data-page="about"]    { color: hsl(222 14% 65%); }
+html.theme-dark nav a[data-page="work"]     { color: hsl(220 40% 65%); }
+html.theme-dark nav a[data-page="projects"] { color: hsl(354 45% 65%); }
+html.theme-dark nav a[data-page="writing"]  { color: hsl(133 30% 55%); }
+
+/* HOVER — deepens to medium tone */
+nav a[data-page="about"]:hover    { color: hsl(222 18% 32%); }
+nav a[data-page="work"]:hover     { color: hsl(var(--ink-azul-medium)); }
+nav a[data-page="projects"]:hover { color: hsl(var(--ink-rojo-medium)); }
+nav a[data-page="writing"]:hover  { color: hsl(var(--ink-verde-medium)); }
+
+html.theme-dark nav a[data-page="about"]:hover    { color: hsl(222 14% 85%); }
+html.theme-dark nav a[data-page="work"]:hover     { color: hsl(var(--ink-azul-light)); }
+html.theme-dark nav a[data-page="projects"]:hover { color: hsl(var(--ink-rojo-light)); }
+html.theme-dark nav a[data-page="writing"]:hover  { color: hsl(var(--ink-verde-light)); }
+
+/* kbd ALWAYS in its medium tone (light mode) / light tone (dark mode) */
 nav a[data-page="work"] kbd     { color: hsl(var(--ink-azul-medium)); }
 nav a[data-page="projects"] kbd { color: hsl(var(--ink-rojo-medium)); }
 nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-medium)); }
