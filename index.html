@@ -184,8 +184,6 @@ header.topnav {
   gap: var(--space-6);
 }
 
-nav { flex: 1 1 auto; }
-
 nav ul {
   list-style: none;
   display: flex;
@@ -197,7 +195,6 @@ nav ul {
   display: flex;
   gap: var(--space-3);
   align-items: baseline;
-  margin-left: auto;
 }
 
 .header-controls button {
@@ -248,26 +245,82 @@ nav a:hover kbd { color: hsl(var(--rurikon-500)); }
 nav a.active { color: hsl(var(--rurikon-800)); font-weight: 700; }
 nav a.active kbd { color: hsl(var(--rurikon-600)); }
 
-/* ── Filgo ink system — color per section (Level B) ── */
-/* about = negro (default rurikon, no override needed) */
+/* ── Filgo ink system — color per section (Level C, full tint) ── */
+/* about = negro (default rurikon ramp, no override) */
 /* work = azul, projects = rojo, writing = verde */
 
-/* light mode: kbd in medium tone, active in dark tone */
+/* kbd ALWAYS in its medium tone, regardless of section active */
 nav a[data-page="work"] kbd     { color: hsl(var(--ink-azul-medium)); }
 nav a[data-page="projects"] kbd { color: hsl(var(--ink-rojo-medium)); }
 nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-medium)); }
+html.theme-dark nav a[data-page="work"] kbd     { color: hsl(var(--ink-azul-light)); }
+html.theme-dark nav a[data-page="projects"] kbd { color: hsl(var(--ink-rojo-light)); }
+html.theme-dark nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-light)); }
 
+/* When a section is active, redefine the rurikon ramp with ink tones.
+   This automatically tints headings, body text, links, code, everything. */
+
+/* WORK = azul (light mode) */
+html.section-work {
+  --rurikon-300: 220 50% 75%;
+  --rurikon-400: 220 60% 55%;
+  --rurikon-500: 223 65% 38%;
+  --rurikon-600: 225 75% 32%;
+  --rurikon-700: 225 80% 25%;
+  --rurikon-800: 225 85% 18%;
+}
+html.theme-dark.section-work {
+  --rurikon-300: 220 30% 38%;
+  --rurikon-400: 220 45% 55%;
+  --rurikon-500: 220 60% 72%;
+  --rurikon-600: 220 65% 80%;
+  --rurikon-700: 220 70% 88%;
+  --rurikon-800: 220 75% 94%;
+}
+
+/* PROJECTS = rojo (light mode) */
+html.section-projects {
+  --rurikon-300: 354 60% 78%;
+  --rurikon-400: 354 65% 60%;
+  --rurikon-500: 354 60% 42%;
+  --rurikon-600: 354 70% 35%;
+  --rurikon-700: 354 75% 28%;
+  --rurikon-800: 354 80% 20%;
+}
+html.theme-dark.section-projects {
+  --rurikon-300: 354 35% 40%;
+  --rurikon-400: 354 50% 58%;
+  --rurikon-500: 354 60% 72%;
+  --rurikon-600: 354 65% 80%;
+  --rurikon-700: 354 70% 88%;
+  --rurikon-800: 354 75% 94%;
+}
+
+/* WRITING = verde (light mode) */
+html.section-writing {
+  --rurikon-300: 133 25% 70%;
+  --rurikon-400: 135 35% 48%;
+  --rurikon-500: 135 50% 28%;
+  --rurikon-600: 135 55% 23%;
+  --rurikon-700: 135 60% 18%;
+  --rurikon-800: 135 65% 13%;
+}
+html.theme-dark.section-writing {
+  --rurikon-300: 133 25% 38%;
+  --rurikon-400: 133 35% 55%;
+  --rurikon-500: 133 35% 70%;
+  --rurikon-600: 133 40% 80%;
+  --rurikon-700: 133 50% 88%;
+  --rurikon-800: 133 55% 94%;
+}
+
+/* Active tab in its own dark/light tone — never tinted by section override */
 nav a[data-page="work"].active,
 nav a[data-page="work"].active kbd     { color: hsl(var(--ink-azul-dark)); }
 nav a[data-page="projects"].active,
 nav a[data-page="projects"].active kbd { color: hsl(var(--ink-rojo-dark)); }
 nav a[data-page="writing"].active,
 nav a[data-page="writing"].active kbd  { color: hsl(var(--ink-verde-dark)); }
-
-/* dark mode: invert — light tone for visibility on dark bg */
-html.theme-dark nav a[data-page="work"] kbd     { color: hsl(var(--ink-azul-light)); }
-html.theme-dark nav a[data-page="projects"] kbd { color: hsl(var(--ink-rojo-light)); }
-html.theme-dark nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-light)); }
 
 html.theme-dark nav a[data-page="work"].active,
 html.theme-dark nav a[data-page="work"].active kbd     { color: hsl(var(--ink-azul-light)); }
@@ -708,6 +761,18 @@ function updateTitle(target) {
   if (entry) document.title = entry[lang] || entry.en;
 }
 
+// Map post detail pages to their parent section so colors stay coherent
+const SECTION_OF = {
+  about: 'about',
+  work: 'work',
+  projects: 'projects',
+  writing: 'writing',
+  'post-hello': 'writing',
+  'post-why-code': 'writing',
+  'post-easing': 'writing',
+  'post-paperverse': 'writing',
+};
+
 function navigate(target) {
   pages.forEach(p => {
     const isTarget = p.id === target;
@@ -722,6 +787,10 @@ function navigate(target) {
   document.querySelectorAll('nav a').forEach(a => {
     a.classList.toggle('active', a.dataset.page === target);
   });
+  // Tint the whole page based on section
+  const section = SECTION_OF[target] || 'about';
+  document.documentElement.classList.remove('section-about', 'section-work', 'section-projects', 'section-writing');
+  document.documentElement.classList.add('section-' + section);
   if (history.replaceState) {
     const path = target === 'about' ? '/' : `/${target}`;
     history.replaceState(null, '', path);
