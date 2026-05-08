@@ -194,40 +194,82 @@ nav ul {
 .header-controls {
   display: flex;
   gap: var(--space-3);
-  align-items: baseline;
+  align-items: center;
 }
 
-.header-controls button {
+/* ── Toggle Group: language (EN / ES) ────────────────── */
+.lang-toggle {
+  display: inline-flex;
+  background: hsl(var(--rurikon-100));
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+  padding: 2px;
+  gap: 1px;
+}
+.lang-toggle button {
+  background: transparent;
+  border: 0;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  font-weight: 600;
+  color: hsl(var(--rurikon-400));
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.lang-toggle button:hover { color: hsl(var(--rurikon-700)); }
+html.lang-en .lang-toggle button[data-lang="en"],
+html.lang-es .lang-toggle button[data-lang="es"] {
+  background: hsl(var(--background));
+  color: hsl(var(--rurikon-800));
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* ── Switch: theme (sun ↔ moon) ──────────────────────── */
+.theme-switch {
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
-  font: inherit;
-  color: hsl(var(--rurikon-300));
-  transition: color 0.2s ease;
-  font-family: var(--font-mono);
-  font-size: 0.85em;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
 }
-.header-controls button:hover {
-  color: hsl(var(--rurikon-600));
-}
-.header-controls .lang-toggle .active {
-  color: hsl(var(--rurikon-800));
-  font-weight: 700;
-}
-.header-controls .theme-toggle {
-  font-size: 1em;
-  line-height: 1;
-}
-.header-controls .theme-toggle .icon-sun,
-.header-controls .theme-toggle .icon-moon {
+.theme-track {
   display: inline-block;
+  background: hsl(var(--rurikon-100));
+  border: 1px solid hsl(var(--border));
+  border-radius: 99px;
+  width: 38px;
+  height: 22px;
+  position: relative;
+  transition: background 0.2s ease;
 }
-html.theme-light .icon-sun { display: inline-block; }
-html.theme-light .icon-moon { display: none; }
-html.theme-dark .icon-sun { display: none; }
-html.theme-dark .icon-moon { display: inline-block; }
+.theme-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: hsl(var(--background));
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  color: hsl(var(--rurikon-700));
+  transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+html.theme-dark .theme-thumb {
+  transform: translateX(16px);
+}
+html.theme-light .theme-icon-moon,
+html.theme-dark .theme-icon-sun {
+  display: none;
+}
 
 nav a {
   display: inline-flex;
@@ -544,11 +586,17 @@ a[data-page],
     </ul>
   </nav>
   <div class="header-controls">
-    <button class="lang-toggle" aria-label="Switch language">
-      <span class="lang-en-btn">EN</span> / <span class="lang-es-btn">ES</span>
-    </button>
-    <button class="theme-toggle" aria-label="Switch theme" title="Toggle dark mode">
-      <span class="icon-sun">☾</span><span class="icon-moon">☼</span>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="es">ES</button>
+    </div>
+    <button type="button" class="theme-switch" aria-label="Toggle theme">
+      <span class="theme-track">
+        <span class="theme-thumb">
+          <span class="theme-icon-sun" aria-hidden="true">☼</span>
+          <span class="theme-icon-moon" aria-hidden="true">☾</span>
+        </span>
+      </span>
     </button>
   </div>
 </header>
@@ -872,9 +920,7 @@ function setLang(lang) {
   document.documentElement.classList.remove('lang-en', 'lang-es');
   document.documentElement.classList.add('lang-' + lang);
   localStorage.setItem('lang', lang);
-  document.querySelectorAll('.lang-en-btn, .lang-es-btn').forEach(el => el.classList.remove('active'));
-  const activeBtn = document.querySelector('.lang-' + lang + '-btn');
-  if (activeBtn) activeBtn.classList.add('active');
+  // CSS handles active styling via html.lang-X selector
   // refresh tab title in the new language
   const active = document.querySelector('.page.active');
   if (active) updateTitle(active.id);
@@ -894,8 +940,10 @@ const savedLang = localStorage.getItem('lang')
 setLang(savedLang);
 
 // Wire up the buttons
-document.querySelector('.theme-toggle')?.addEventListener('click', toggleTheme);
-document.querySelector('.lang-toggle')?.addEventListener('click', toggleLang);
+document.querySelector('.theme-switch')?.addEventListener('click', toggleTheme);
+document.querySelectorAll('.lang-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
 
 // Initial route from path
 const initial = window.location.pathname.replace(/^\//, '') || 'about';
