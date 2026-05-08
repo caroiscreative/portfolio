@@ -30,7 +30,7 @@ Capital markets and trading platforms, fintech, cryptocurrency payments, SaaS fo
 
 ## links
 
-- Portfolio: https://carofranco.com
+- Portfolio: https://portfolio-carolinafrancomata.vercel.app
 - LinkedIn: https://www.linkedin.com/in/francomatacarolina/
 - GitHub: https://github.com/caroiscreative
 - X: https://x.com/caroiscreativee

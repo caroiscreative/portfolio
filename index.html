@@ -12,7 +12,7 @@
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Carolina Franco — designer">
 <meta property="og:description" content="Designer at Lunte Studio. Capital markets. Building Paperverse and SpaceNavigator. Buenos Aires.">
-<meta property="og:url" content="https://carofranco.com">
+<meta property="og:url" content="https://portfolio-carolinafrancomata.vercel.app">
 <meta property="og:locale" content="en_US">
 <meta property="profile:first_name" content="Carolina">
 <meta property="profile:last_name" content="Franco">
@@ -20,8 +20,11 @@
 <meta name="twitter:title" content="Carolina Franco — designer">
 <meta name="twitter:description" content="Designer at Lunte Studio. Capital markets. Buenos Aires.">
 
-<link rel="canonical" href="https://carofranco.com">
+<link rel="canonical" href="https://portfolio-carolinafrancomata.vercel.app">
 <link rel="alternate" type="application/rss+xml" title="Carolina Franco · writing" href="/feed.xml">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -32,8 +35,8 @@
   "@type": "Person",
   "name": "Carolina Franco",
   "alternateName": "Carolina Franco Mata",
-  "url": "https://carofranco.com",
-  "image": "https://carofranco.com/og.png",
+  "url": "https://portfolio-carolinafrancomata.vercel.app",
+  "image": "https://portfolio-carolinafrancomata.vercel.app/og.png",
   "jobTitle": "Senior Product Designer",
   "description": "Designer at Lunte Studio working on a trading dashboard in capital markets. Five years across SaaS, fintech and crypto. Building independent tools toward design engineering.",
   "worksFor": {
@@ -79,6 +82,19 @@
   --space-7: 28px;
   --space-10: 40px;
   --space-14: 56px;
+
+  /* Filgo ink palette — used to tint nav tabs by section */
+  --ink-azul-light:   220 60% 60%;
+  --ink-azul-medium:  223 70% 42%;
+  --ink-azul-dark:    225 80% 28%;
+
+  --ink-rojo-light:   354 70% 65%;
+  --ink-rojo-medium:  354 70% 47%;
+  --ink-rojo-dark:    354 75% 31%;
+
+  --ink-verde-light:  133 30% 52%;
+  --ink-verde-medium: 135 47% 32%;
+  --ink-verde-dark:   135 55% 19%;
 }
 
 :root,
@@ -231,6 +247,34 @@ nav a:hover { color: hsl(var(--rurikon-600)); }
 nav a:hover kbd { color: hsl(var(--rurikon-500)); }
 nav a.active { color: hsl(var(--rurikon-800)); font-weight: 700; }
 nav a.active kbd { color: hsl(var(--rurikon-600)); }
+
+/* ── Filgo ink system — color per section (Level B) ── */
+/* about = negro (default rurikon, no override needed) */
+/* work = azul, projects = rojo, writing = verde */
+
+/* light mode: kbd in medium tone, active in dark tone */
+nav a[data-page="work"] kbd     { color: hsl(var(--ink-azul-medium)); }
+nav a[data-page="projects"] kbd { color: hsl(var(--ink-rojo-medium)); }
+nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-medium)); }
+
+nav a[data-page="work"].active,
+nav a[data-page="work"].active kbd     { color: hsl(var(--ink-azul-dark)); }
+nav a[data-page="projects"].active,
+nav a[data-page="projects"].active kbd { color: hsl(var(--ink-rojo-dark)); }
+nav a[data-page="writing"].active,
+nav a[data-page="writing"].active kbd  { color: hsl(var(--ink-verde-dark)); }
+
+/* dark mode: invert — light tone for visibility on dark bg */
+html.theme-dark nav a[data-page="work"] kbd     { color: hsl(var(--ink-azul-light)); }
+html.theme-dark nav a[data-page="projects"] kbd { color: hsl(var(--ink-rojo-light)); }
+html.theme-dark nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-light)); }
+
+html.theme-dark nav a[data-page="work"].active,
+html.theme-dark nav a[data-page="work"].active kbd     { color: hsl(var(--ink-azul-light)); }
+html.theme-dark nav a[data-page="projects"].active,
+html.theme-dark nav a[data-page="projects"].active kbd { color: hsl(var(--ink-rojo-light)); }
+html.theme-dark nav a[data-page="writing"].active,
+html.theme-dark nav a[data-page="writing"].active kbd  { color: hsl(var(--ink-verde-light)); }
 
 nav a kbd {
   font-family: var(--font-mono);
@@ -647,6 +691,23 @@ a[data-page],
 <script>
 const pages = document.querySelectorAll('.page');
 
+// Page → tab title map (en + es)
+const TITLES = {
+  about:           { en: 'Carolina Franco',                                     es: 'Carolina Franco' },
+  work:            { en: 'work · Carolina Franco',                              es: 'trabajo · Carolina Franco' },
+  projects:        { en: 'projects · Carolina Franco',                          es: 'proyectos · Carolina Franco' },
+  writing:         { en: 'writing · Carolina Franco',                           es: 'escritos · Carolina Franco' },
+  'post-hello':    { en: 'on starting to write again · Carolina Franco',        es: 'de empezar a escribir otra vez · Carolina Franco' },
+  'post-why-code': { en: 'why a designer should know code · Carolina Franco',   es: 'por qué un diseñador debería saber programar · Carolina Franco' },
+  'post-easing':   { en: 'easing curves · Carolina Franco',                     es: 'curvas de easing · Carolina Franco' },
+  'post-paperverse': { en: 'how I built paperverse · Carolina Franco',          es: 'cómo construí paperverse · Carolina Franco' },
+};
+function updateTitle(target) {
+  const lang = document.documentElement.classList.contains('lang-es') ? 'es' : 'en';
+  const entry = TITLES[target];
+  if (entry) document.title = entry[lang] || entry.en;
+}
+
 function navigate(target) {
   pages.forEach(p => {
     const isTarget = p.id === target;
@@ -665,6 +726,7 @@ function navigate(target) {
     const path = target === 'about' ? '/' : `/${target}`;
     history.replaceState(null, '', path);
   }
+  updateTitle(target);
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
@@ -718,6 +780,9 @@ function setLang(lang) {
   document.querySelectorAll('.lang-en-btn, .lang-es-btn').forEach(el => el.classList.remove('active'));
   const activeBtn = document.querySelector('.lang-' + lang + '-btn');
   if (activeBtn) activeBtn.classList.add('active');
+  // refresh tab title in the new language
+  const active = document.querySelector('.page.active');
+  if (active) updateTitle(active.id);
 }
 function toggleLang() {
   const current = document.documentElement.classList.contains('lang-es') ? 'es' : 'en';
