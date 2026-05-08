@@ -1,0 +1,41 @@
+# Carolina Franco
+
+> Designer at Lunte Studio (a small Argentina-based design studio that places lead designers full-time at startups and growth-stage companies). Currently leading design on a trading dashboard for institutional clients in capital markets. Five years of experience across SaaS, fintech and crypto, designing professionally since late 2020. Buenos Aires.
+
+## about
+
+Carolina Franco is a designer working professionally since late 2020 (five years of experience), focused on user research, high-fidelity prototyping, and design operations. Her interests are product design, design systems, and cyberspace. She is slowly turning toward design engineering by building independent tools in code (HTML, CSS, JavaScript, React, Three.js).
+
+The pull behind most of her work is wanting nature, technology and humanism to stop fighting each other. She picks projects where that line is visible.
+
+## experience
+
+- **Lunte Studio** (Sep 2025 — present): Designer. Lead on a trading dashboard for institutional clients in capital markets. High information density, multiple data streams. Defined the standard trader workflow and the design system component-adoption process.
+- **Wipass** (Jan — Mar 2025): Chief Design Officer. Multi-device design strategy. Redesigned the data architecture and the active modules to reduce onboarding time for new clients.
+- **Muvinai** (2024): Lead designer. Redesigned SimpleFi's crypto checkout (used by 2,000+ people, launched at Aleph 2024). Led Sabor Crypto with Ripio, bringing crypto payments to 30+ restaurants in Buenos Aires.
+- **Meru** (2021 — 2024): Lead designer. SaaS for repair shops and spare-parts retailers. Productivity went up 30% in the first month of use. Led the user research that defined the platform.
+
+## independent projects
+
+- **Paperverse** (v1.0, 2026): A reader for scientific papers in Spanish. Curated feed, auto-translation of titles and abstracts, AI button that explains each finding for a kid, a teen, or someone technical. Runs entirely client-side. Open source under MIT. Built with React, Vite, TypeScript. Live at https://paperverse.vercel.app/ — source at https://github.com/caroiscreative/paperverse
+- **SpaceNavigator** (2026): Real-time 3D space situational awareness platform that runs entirely in the browser. Tracks 27,000+ satellites and debris objects using live TLE data from CelesTrak, propagated with SGP4 orbital mechanics. Includes full solar system (VSOP87 ephemeris), orbital conjunction risk scanner, debris density heatmap, space weather dashboard, deep-sky catalog, and interstellar visitor trajectories. No server, no backend, no tracking. Built with Three.js (WebGPU), satellite.js, Vite. Live at https://spacenavigator-ten.vercel.app/ — source at https://github.com/caroiscreative/spacenavigator
+
+## skills
+
+Product Design, User Experience, Design Systems, Design Engineering, Information Architecture, User Research, High-fidelity Prototyping, Design Operations, Accessibility, HTML, CSS, JavaScript, TypeScript, React, Vite, Three.js, Figma, Webflow, Framer.
+
+## domains of work
+
+Capital markets and trading platforms, fintech, cryptocurrency payments, SaaS for service businesses, design systems, AI-augmented product design, editorial product design.
+
+## links
+
+- Portfolio: https://carofranco.com
+- LinkedIn: https://www.linkedin.com/in/francomatacarolina/
+- GitHub: https://github.com/caroiscreative
+- X: https://x.com/caroiscreativee
+- Email: francomatacarolina@gmail.com
+
+## availability
+
+Open to design engineering roles, lead/senior product design roles in fintech or capital markets, and selected freelance projects with strong product or research components.

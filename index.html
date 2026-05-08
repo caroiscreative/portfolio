@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Carolina Franco</title>
+<meta name="description" content="Carolina Franco. Designer at Lunte Studio working on a trading dashboard in capital markets. Five years across SaaS, fintech and crypto. Building Paperverse and SpaceNavigator on the side. Buenos Aires.">
+<meta name="author" content="Carolina Franco">
+<meta name="theme-color" content="#fcfcfc">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Carolina Franco — designer">
+<meta property="og:description" content="Designer at Lunte Studio. Capital markets. Building Paperverse and SpaceNavigator. Buenos Aires.">
+<meta property="og:url" content="https://carofranco.com">
+<meta property="og:locale" content="en_US">
+<meta property="profile:first_name" content="Carolina">
+<meta property="profile:last_name" content="Franco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Carolina Franco — designer">
+<meta name="twitter:description" content="Designer at Lunte Studio. Capital markets. Buenos Aires.">
+
+<link rel="canonical" href="https://carofranco.com">
+<link rel="alternate" type="application/rss+xml" title="Carolina Franco · writing" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Carolina Franco",
+  "alternateName": "Carolina Franco Mata",
+  "url": "https://carofranco.com",
+  "image": "https://carofranco.com/og.png",
+  "jobTitle": "Senior Product Designer",
+  "description": "Designer at Lunte Studio working on a trading dashboard in capital markets. Five years across SaaS, fintech and crypto. Building independent tools toward design engineering.",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Lunte Studio",
+    "url": "https://lunte.studio"
+  },
+  "alumniOf": [
+    { "@type": "Organization", "name": "Wipass" },
+    { "@type": "Organization", "name": "Muvinai" },
+    { "@type": "Organization", "name": "Meru" }
+  ],
+  "knowsAbout": [
+    "Product Design", "User Experience", "Design Systems", "Design Engineering",
+    "Information Architecture", "User Research", "Prototyping",
+    "Capital Markets", "Fintech", "Crypto", "SaaS", "Trading Dashboards",
+    "HTML", "CSS", "JavaScript", "TypeScript", "React", "Three.js",
+    "Figma", "Webflow", "Framer", "Vercel"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "email": "francomatacarolina@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/francomatacarolina/",
+    "https://github.com/caroiscreative",
+    "https://x.com/caroiscreativee"
+  ]
+}
+</script>
+
+<style>
+:root {
+  /* tokens shared across themes */
+  --radius: 0.5rem;
+  --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-10: 40px;
+  --space-14: 56px;
+}
+
+:root,
+html.theme-light {
+  --background: 0 0% 99%;
+  --foreground: 225 30% 25%;
+  --muted: 222 22% 96%;
+  --muted-foreground: 222 18% 45%;
+  --border: 220 18% 92%;
+  --ring: 222 30% 35%;
+  --primary: 225 30% 25%;
+  --primary-foreground: 0 0% 99%;
+  --accent: 222 22% 94%;
+  --accent-foreground: 222 30% 25%;
+
+  --rurikon-50:  220 25% 97%;
+  --rurikon-100: 220 22% 95%;
+  --rurikon-200: 222 22% 89%;
+  --rurikon-300: 222 22% 76%;
+  --rurikon-400: 222 14% 60%;
+  --rurikon-500: 222 17% 43%;
+  --rurikon-600: 222 24% 32%;
+  --rurikon-700: 225 30% 25%;
+  --rurikon-800: 225 35% 19%;
+}
+
+html.theme-dark {
+  --background: 225 28% 8%;
+  --foreground: 220 25% 92%;
+  --muted: 225 22% 16%;
+  --muted-foreground: 220 14% 60%;
+  --border: 225 20% 22%;
+  --ring: 220 22% 70%;
+  --primary: 220 25% 92%;
+  --primary-foreground: 225 28% 8%;
+  --accent: 225 22% 18%;
+  --accent-foreground: 220 25% 92%;
+
+  --rurikon-50:  225 25% 12%;
+  --rurikon-100: 225 22% 17%;
+  --rurikon-200: 225 18% 25%;
+  --rurikon-300: 220 12% 45%;
+  --rurikon-400: 220 14% 58%;
+  --rurikon-500: 220 18% 75%;
+  --rurikon-600: 220 22% 85%;
+  --rurikon-700: 220 28% 92%;
+  --rurikon-800: 220 32% 97%;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  overflow-x: hidden;
+  touch-action: manipulation;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--rurikon-500));
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.75;
+  padding: var(--space-6);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── i18n: hide non-active language ────────────────── */
+html.lang-en .es { display: none !important; }
+html.lang-es .en { display: none !important; }
+
+@media (min-width: 640px) {
+  body { font-size: 15px; line-height: 1.8; padding: var(--space-10); }
+}
+@media (min-width: 768px) {
+  body { font-size: 16px; line-height: 1.85; padding: var(--space-14); }
+}
+
+/* ── HEADER NAV ────────────────────────────────────────── */
+
+header.topnav {
+  margin-bottom: var(--space-14);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+nav { flex: 1 1 auto; }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.header-controls {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  margin-left: auto;
+}
+
+.header-controls button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: hsl(var(--rurikon-300));
+  transition: color 0.2s ease;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+}
+.header-controls button:hover {
+  color: hsl(var(--rurikon-600));
+}
+.header-controls .lang-toggle .active {
+  color: hsl(var(--rurikon-800));
+  font-weight: 700;
+}
+.header-controls .theme-toggle {
+  font-size: 1em;
+  line-height: 1;
+}
+.header-controls .theme-toggle .icon-sun,
+.header-controls .theme-toggle .icon-moon {
+  display: inline-block;
+}
+html.theme-light .icon-sun { display: inline-block; }
+html.theme-light .icon-moon { display: none; }
+html.theme-dark .icon-sun { display: none; }
+html.theme-dark .icon-moon { display: inline-block; }
+
+nav a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: hsl(var(--rurikon-300));
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 400;
+}
+nav a:hover { color: hsl(var(--rurikon-600)); }
+nav a:hover kbd { color: hsl(var(--rurikon-500)); }
+nav a.active { color: hsl(var(--rurikon-800)); font-weight: 700; }
+nav a.active kbd { color: hsl(var(--rurikon-600)); }
+
+nav a kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: hsl(var(--rurikon-300));
+  font-weight: 400;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+@media (max-width: 719px) {
+  header.topnav { margin-bottom: var(--space-10); }
+  nav ul { gap: var(--space-4); }
+  nav a kbd { display: none; }
+}
+
+/* ── MAIN ──────────────────────────────────────────────── */
+
+main { max-width: 640px; }
+
+/* ── TYPOGRAPHY ────────────────────────────────────────── */
+
+h1 {
+  font-weight: 700;
+  font-size: 1em;
+  color: hsl(var(--rurikon-700));
+  margin-bottom: var(--space-7);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1em;
+  color: hsl(var(--rurikon-700));
+  margin-top: var(--space-14);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+  position: relative;
+}
+h2::before {
+  content: "#";
+  position: absolute;
+  left: -1.4em;
+  color: hsl(var(--rurikon-300));
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 0.5s ease 0.3s, filter 0.5s ease 0.3s;
+}
+h2:hover::before { opacity: 1; filter: blur(0); }
+
+h3 {
+  font-weight: 700;
+  font-size: 0.78em;
+  color: hsl(var(--rurikon-400));
+  margin-top: var(--space-14);
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+p { margin-top: var(--space-7); }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: hsl(var(--rurikon-300));
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+  word-break: break-word;
+}
+a:hover { text-decoration-color: hsl(var(--rurikon-600)); color: hsl(var(--rurikon-700)); }
+
+code {
+  background: hsl(var(--rurikon-100));
+  padding: 1px 6px;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  color: hsl(var(--rurikon-700));
+  font-weight: 400;
+  border: 1px solid hsl(var(--border));
+}
+a code:hover { background: hsl(var(--rurikon-200)); }
+
+/* Subtitle line directly below an H2 (date / metadata) */
+.entry-meta {
+  margin-top: -10px;
+  margin-bottom: 0;
+  color: hsl(var(--rurikon-400));
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+}
+
+/* Secondary intro paragraph at the top of a section */
+.section-intro {
+  color: hsl(var(--rurikon-400));
+}
+
+/* Writing list: title + leader dots + date */
+.writing-list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-7);
+}
+.writing-list li {
+  padding: 5px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.writing-list a {
+  text-decoration: none;
+  color: hsl(var(--rurikon-600));
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.writing-list a:hover { color: hsl(var(--rurikon-800)); }
+.writing-list .leader {
+  flex: 1 1 auto;
+  align-self: center;
+  height: 4px;
+  background-image: radial-gradient(circle, hsl(var(--rurikon-300)) 0.6px, transparent 1px);
+  background-size: 7px 4px;
+  background-position: 0 center;
+  background-repeat: repeat-x;
+  opacity: 0.7;
+  min-width: 12px;
+}
+.writing-list time {
+  flex-shrink: 0;
+  font-size: 0.85em;
+  color: hsl(var(--rurikon-300));
+  letter-spacing: 0.02em;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: var(--space-7);
+  color: hsl(var(--rurikon-400));
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+.back-link:hover { color: hsl(var(--rurikon-700)); }
+
+.post-date {
+  color: hsl(var(--rurikon-400));
+  font-size: 0.9em;
+  margin-top: 0;
+}
+
+/* SPA links sin href: forzar cursor pointer */
+a[data-page],
+.nav-link,
+.back-link,
+.writing-list a {
+  cursor: pointer;
+}
+
+/* Page transitions */
+.page {
+  display: none;
+  animation: fadeIn 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.page.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); filter: blur(2px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topnav">
+  <nav>
+    <ul>
+      <li><a class="nav-link active" data-page="about" data-shortcut="q"><span class="en">about</span><span class="es">sobre mí</span> <kbd>⌥Q</kbd></a></li>
+      <li><a class="nav-link" data-page="work" data-shortcut="w"><span class="en">work</span><span class="es">trabajo</span> <kbd>⌥W</kbd></a></li>
+      <li><a class="nav-link" data-page="projects" data-shortcut="e"><span class="en">projects</span><span class="es">proyectos</span> <kbd>⌥E</kbd></a></li>
+      <li><a class="nav-link" data-page="writing" data-shortcut="r"><span class="en">writing</span><span class="es">escritos</span> <kbd>⌥R</kbd></a></li>
+    </ul>
+  </nav>
+  <div class="header-controls">
+    <button class="lang-toggle" aria-label="Switch language">
+      <span class="lang-en-btn">EN</span> / <span class="lang-es-btn">ES</span>
+    </button>
+    <button class="theme-toggle" aria-label="Switch theme" title="Toggle dark mode">
+      <span class="icon-sun">☾</span><span class="icon-moon">☼</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article>
+
+    <!-- ABOUT -->
+    <section class="page active" id="about">
+      <h1>Carolina Franco</h1>
+
+      <p class="en">I'm a designer at <code>Lunte Studio</code>, currently working on digital products for capital markets. Based in Buenos Aires.</p>
+      <p class="es">Soy diseñadora en <code>Lunte Studio</code>, trabajando en productos digitales para mercados financieros. Basada en Buenos Aires.</p>
+
+      <p class="en">Designing since late 2020, mostly across SaaS, fintech and crypto. Before <code>Lunte</code> I was at <code>Wipass</code>, <code>Muvinai</code> and <code>Meru</code>. My interests span product design, design systems and technology.</p>
+      <p class="es">Diseñando desde fines de 2020, sobre todo en SaaS, fintech y cripto. Antes de <code>Lunte</code> estuve en <code>Wipass</code>, <code>Muvinai</code> y <code>Meru</code>. Mis intereses son el diseño de producto, los design systems y tecnología.</p>
+
+      <p class="en">In parallel I build small things in code: <a href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer">Paperverse</a> and <a href="https://spacenavigator-ten.vercel.app/" target="_blank" rel="noopener noreferrer">SpaceNavigator</a>. Slowly moving toward design engineering. I dream of a future where nature, technology and humanism align, which is why I prioritize work where humanism is the engine of change.</p>
+      <p class="es">En paralelo construyo cosas pequeñas en código: <a href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer">Paperverse</a> y <a href="https://spacenavigator-ten.vercel.app/" target="_blank" rel="noopener noreferrer">SpaceNavigator</a>. Avanzando despacio hacia el design engineering. Sueño con un futuro donde la naturaleza, la tecnología y el humanismo se alineen, por eso priorizo proyectos donde el humanismo es el motor del cambio.</p>
+
+      <p class="en">You can read my <a data-page="writing" class="nav-link">writing</a>, see my <a data-page="projects" class="nav-link">projects</a>, the <a data-page="work" class="nav-link">work</a> I've done with clients, find me on <a href="https://github.com/caroiscreative" target="_blank" rel="noopener noreferrer">GitHub</a>, <a href="https://x.com/caroiscreativee" target="_blank" rel="noopener noreferrer">X</a>, and <a href="https://www.linkedin.com/in/francomatacarolina/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+      <p class="es">Podés leer mis <a data-page="writing" class="nav-link">escritos</a>, ver mis <a data-page="projects" class="nav-link">proyectos</a>, el <a data-page="work" class="nav-link">trabajo</a> que hice con clientes, encontrarme en <a href="https://github.com/caroiscreative" target="_blank" rel="noopener noreferrer">GitHub</a>, <a href="https://x.com/caroiscreativee" target="_blank" rel="noopener noreferrer">X</a>, y <a href="https://www.linkedin.com/in/francomatacarolina/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+    </section>
+
+    <!-- WORK -->
+    <section class="page" id="work">
+      <p class="section-intro en">Selected projects since 2020. Capital markets, fintech, crypto, SaaS. Most of these were built with small teams, design and engineering close together.</p>
+      <p class="section-intro es">Proyectos seleccionados desde 2020. Mercados de capitales, fintech, cripto, SaaS. La mayoría se hicieron con equipos chicos, diseño e ingeniería trabajando juntos.</p>
+
+      <h2>lunte studio · capital markets</h2>
+      <p class="entry-meta en">Since 2025</p>
+      <p class="entry-meta es">Desde 2025</p>
+      <p class="en">Lead design on a trading dashboard for institutional clients. High information density, multiple data streams, deep workflow customization. Defined the standard trader workflow and the design system component-adoption process for the platform.</p>
+      <p class="es">Diseño líder en un dashboard de trading para clientes institucionales. Alta densidad de información, múltiples streams de datos, profunda personalización del flujo de trabajo. Definí el flujo estándar del trader y el proceso de adopción de componentes en el design system de la plataforma.</p>
+
+      <h2>simplefi · crypto checkout</h2>
+      <p class="entry-meta">2024</p>
+      <p class="en">Redesigned SimpleFi's crypto checkout while at Muvinai, working with the CEO and the engineering team. Used by 2,000+ people. Launched at <code>Aleph 2024</code> by Crecimiento Argentina.</p>
+      <p class="es">Rediseñé el checkout cripto de SimpleFi en Muvinai, trabajando con el CEO y el equipo de ingeniería. Usado por más de 2.000 personas. Lanzado en <code>Aleph 2024</code> por Crecimiento Argentina.</p>
+
+      <h2>sabor crypto · ripio</h2>
+      <p class="entry-meta">2024</p>
+      <p class="en">Visual identity and product design for Sabor Crypto, in collaboration with Ripio, bringing crypto payments to 30+ restaurants in the Palermo neighborhood of Buenos Aires.</p>
+      <p class="es">Identidad visual y diseño de producto para Sabor Crypto, en colaboración con Ripio. Llevamos los pagos cripto a más de 30 restaurantes del barrio de Palermo en Buenos Aires.</p>
+
+      <h2>meru · saas for repair shops</h2>
+      <p class="entry-meta">2021–2024</p>
+      <p class="en">SaaS platform for repair shops and spare-parts retailers. Productivity went up 30% from the first month. I led the user research that defined the platform.</p>
+      <p class="es">Plataforma SaaS para talleres de reparación y tiendas de repuestos. La productividad subió 30% desde el primer mes. Lideré la investigación de usuarios que definió la plataforma.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="page" id="projects">
+      <p class="section-intro en">Independent work. Things I build to learn the material of the web and to give shape to ideas that don't fit a client brief.</p>
+      <p class="section-intro es">Trabajo independiente. Cosas que construyo para aprender el material de la web y darle forma a ideas que no entran en un brief de cliente.</p>
+
+      <h2>paperverse</h2>
+      <p class="entry-meta">2026</p>
+      <p class="en">An editorial reader for scientific papers in Spanish. Reads like a curated feed; explains research at three levels (5-year-old, teen, technical) with AI; translates titles and abstracts to neutral Spanish. Runs entirely client-side: no account, no analytics, no tracking.</p>
+      <p class="es">Un lector editorial para papers científicos en español. Se lee como un feed curado; explica la investigación en tres niveles (5 años, adolescente, técnico) con IA; traduce títulos y abstracts a español neutro. Corre 100% client-side: sin cuenta, sin analytics, sin tracking.</p>
+      <p class="en">Open source under MIT. Built with <code>React</code>, <code>Vite</code>, <code>TypeScript</code>. <a href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer">paperverse.vercel.app</a> · <a href="https://github.com/caroiscreative/paperverse" target="_blank" rel="noopener noreferrer">github</a>.</p>
+      <p class="es">Open source bajo MIT. Hecho con <code>React</code>, <code>Vite</code>, <code>TypeScript</code>. <a href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer">paperverse.vercel.app</a> · <a href="https://github.com/caroiscreative/paperverse" target="_blank" rel="noopener noreferrer">github</a>.</p>
+
+      <h2>spacenavigator</h2>
+      <p class="entry-meta">2026</p>
+      <p class="en">A real-time 3D space situational awareness platform that runs entirely in the browser. Tracks 27,000+ satellites and debris objects using live TLE data from CelesTrak, propagated with SGP4 orbital mechanics. Full solar system, orbital conjunction risk scanner, debris density heatmap, space weather dashboard, deep-sky catalog, and interstellar visitor trajectories.</p>
+      <p class="es">Plataforma 3D de situational awareness espacial en tiempo real, corriendo 100% en el browser. Trackea más de 27.000 satélites y debris usando datos TLE en vivo de CelesTrak, propagados con mecánica orbital SGP4. Sistema solar completo, scanner de riesgo de conjunción orbital, heatmap de densidad de debris, dashboard de clima espacial, catálogo deep-sky y trayectorias de visitantes interestelares.</p>
+      <p class="en">No server, no backend, no tracking. Built with <code>Three.js</code> (WebGPU renderer), <code>satellite.js</code>, <code>Vite</code>, and live data from CelesTrak, NOAA SWPC and NASA SDO. <a href="https://spacenavigator-ten.vercel.app/" target="_blank" rel="noopener noreferrer">spacenavigator-ten.vercel.app</a> · <a href="https://github.com/caroiscreative/spacenavigator" target="_blank" rel="noopener noreferrer">github</a>.</p>
+      <p class="es">Sin servidor, sin backend, sin tracking. Hecho con <code>Three.js</code> (renderer WebGPU), <code>satellite.js</code>, <code>Vite</code>, y datos en vivo de CelesTrak, NOAA SWPC y NASA SDO. <a href="https://spacenavigator-ten.vercel.app/" target="_blank" rel="noopener noreferrer">spacenavigator-ten.vercel.app</a> · <a href="https://github.com/caroiscreative/spacenavigator" target="_blank" rel="noopener noreferrer">github</a>.</p>
+    </section>
+
+    <!-- WRITING LIST -->
+    <section class="page" id="writing">
+      <p class="section-intro en">Notes on the work. Design systems, the move toward design engineering, the small details that make interfaces feel alive. Available via <a href="/feed.xml">rss</a>.</p>
+      <p class="section-intro es">Notas sobre el trabajo. Design systems, el camino hacia el design engineering, los detalles chicos que hacen que las interfaces se sientan vivas. Disponible vía <a href="/feed.xml">rss</a>.</p>
+
+      <ul class="writing-list">
+        <li>
+          <a class="nav-link" data-page="post-hello">
+            <span class="en">on starting to write again</span>
+            <span class="es">de empezar a escribir otra vez</span>
+          </a>
+          <span class="leader" aria-hidden="true"></span>
+          <time datetime="2026-05-04">2026.05.04</time>
+        </li>
+        <li>
+          <a class="nav-link" data-page="post-why-code">
+            <span class="en">why a product designer should know how to code</span>
+            <span class="es">por qué un diseñador de producto debería saber programar</span>
+          </a>
+          <span class="leader" aria-hidden="true"></span>
+          <time datetime="2026-04-28">2026.04.28</time>
+        </li>
+        <li>
+          <a class="nav-link" data-page="post-easing">
+            <span class="en">easing curves for product designers</span>
+            <span class="es">curvas de easing para diseñadores de producto</span>
+          </a>
+          <span class="leader" aria-hidden="true"></span>
+          <time datetime="2026-04-15">2026.04.15</time>
+        </li>
+        <li>
+          <a class="nav-link" data-page="post-paperverse">
+            <span class="en">how I built paperverse</span>
+            <span class="es">cómo construí paperverse</span>
+          </a>
+          <span class="leader" aria-hidden="true"></span>
+          <time datetime="2026-03-15">2026.03.15</time>
+        </li>
+      </ul>
+    </section>
+
+    <!-- POST: hello -->
+    <section class="page" id="post-hello">
+      <a class="back-link nav-link" data-page="writing">
+        <span class="en">← back to writing</span>
+        <span class="es">← volver a escritos</span>
+      </a>
+
+      <h1 class="en">on starting to write again</h1>
+      <h1 class="es">de empezar a escribir otra vez</h1>
+      <p class="post-date en">2026.05.04 · 3 min read</p>
+      <p class="post-date es">2026.05.04 · 3 min de lectura</p>
+
+      <p class="en">This is the first note in a new home for my writing.</p>
+      <p class="es">Esta es la primera nota en una casa nueva para mi escritura.</p>
+
+      <p class="en">For a long time I thought writing in public was for people with strong opinions. I have opinions; I treat them like prototypes. I want to test them in conversation before committing them to a permanent surface. So I kept everything in private notes, in <code>obsidian</code>, in chats that scrolled away.</p>
+      <p class="es">Por mucho tiempo pensé que escribir en público era para gente con opiniones fuertes. Yo tengo opiniones; las trato como prototipos. Quiero probarlas en conversación antes de comprometerlas a una superficie permanente. Así que guardaba todo en notas privadas, en <code>obsidian</code>, en chats que se perdían en el scroll.</p>
+
+      <p class="en">What changed this year is that I started building. <code>Paperverse</code> and <code>SpaceNavigator</code>. Small projects, but each one taught me something specific that I wanted to remember and that no one else had written down in the exact way I needed.</p>
+      <p class="es">Lo que cambió este año es que empecé a construir. <code>Paperverse</code> y <code>SpaceNavigator</code>. Proyectos chicos, pero cada uno me enseñó algo específico que quería recordar y que nadie más había escrito exactamente como yo lo necesitaba.</p>
+
+      <p class="en">This site is a place to put those notes. Slow, short, often unfinished. Some will be process diaries, some technical observations, some just thinking out loud. The bar is low on purpose.</p>
+      <p class="es">Este sitio es un lugar para poner esas notas. Lentas, cortas, muchas veces inacabadas. Algunas serán diarios de proceso, otras observaciones técnicas, otras solo pensar en voz alta. La barra es baja a propósito.</p>
+
+      <p class="en">If you want to follow along, the <a href="/feed.xml">rss feed</a> is the polite way.</p>
+      <p class="es">Si querés seguir, el <a href="/feed.xml">feed rss</a> es la forma elegante.</p>
+    </section>
+
+    <!-- POST: why code -->
+    <section class="page" id="post-why-code">
+      <a class="back-link nav-link" data-page="writing">
+        <span class="en">← back to writing</span>
+        <span class="es">← volver a escritos</span>
+      </a>
+
+      <h1 class="en">why a product designer should know how to code</h1>
+      <h1 class="es">por qué un diseñador de producto debería saber programar</h1>
+      <p class="post-date en">2026.04.28 · 5 min read</p>
+      <p class="post-date es">2026.04.28 · 5 min de lectura</p>
+
+      <p class="en">Code is the material we design in. Not knowing it is like a sculptor who only sketches.</p>
+      <p class="es">El código es el material en el que diseñamos. No saberlo es como un escultor que solo bocetea.</p>
+
+      <p class="en">I'm not arguing that designers should ship production code. The argument is smaller: if you don't feel the constraints of the medium in your hands, you'll keep proposing things that look right in <code>figma</code> and break the moment they meet a real browser, a real keyboard, a real screen reader.</p>
+      <p class="es">No estoy argumentando que los diseñadores deban shippear código a producción. El argumento es más chico: si no sentís los límites del medio en tus manos, vas a seguir proponiendo cosas que se ven bien en <code>figma</code> y se rompen apenas tocan un browser real, un teclado real, un screen reader real.</p>
+
+      <p class="en">The day I could change a button radius myself was the day I stopped negotiating it in slack. The day I could read a pull request was the day I started writing better tickets. None of that made me an engineer. It made me a better designer.</p>
+      <p class="es">El día que pude cambiar el radius de un botón yo misma fue el día que dejé de negociarlo en slack. El día que pude leer un pull request fue el día que empecé a escribir mejores tickets. Nada de eso me hizo ingeniera. Me hizo mejor diseñadora.</p>
+
+      <p class="en">(This post is a stub. I'll come back to it.)</p>
+      <p class="es">(Este post es un borrador. Vuelvo después.)</p>
+    </section>
+
+    <!-- POST: easing -->
+    <section class="page" id="post-easing">
+      <a class="back-link nav-link" data-page="writing">
+        <span class="en">← back to writing</span>
+        <span class="es">← volver a escritos</span>
+      </a>
+
+      <h1 class="en">easing curves for product designers</h1>
+      <h1 class="es">curvas de easing para diseñadores de producto</h1>
+      <p class="post-date en">2026.04.15 · 7 min read</p>
+      <p class="post-date es">2026.04.15 · 7 min de lectura</p>
+
+      <p class="en">An animation is not just <code>from</code> and <code>to</code>. The interesting part is what happens in between.</p>
+      <p class="es">Una animación no es solo <code>from</code> y <code>to</code>. La parte interesante es lo que pasa en el medio.</p>
+
+      <p class="en">Most product designers I know default to <code>ease-in-out</code> because it's the safe choice. It's also the most generic. It says nothing about the personality of the interface, the brand, or the moment. It's the beige paint of motion design.</p>
+      <p class="es">La mayoría de los diseñadores de producto que conozco van por default a <code>ease-in-out</code> porque es la opción segura. También es la más genérica. No dice nada sobre la personalidad de la interfaz, la marca, o el momento. Es la pintura beige del motion design.</p>
+
+      <p class="en">The curves I keep reaching for, in order of how often: <code>cubic-bezier(0.32, 0.72, 0, 1)</code>, Apple's default for system animations. Long, soft deceleration. Premium feel without being precious. <code>cubic-bezier(0.22, 1, 0.36, 1)</code>, what Harin Nitisvaar uses on his portfolio. Cinematic. <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code>, overshoot, for when the interface needs to feel responsive without being literal.</p>
+      <p class="es">Las curvas a las que vuelvo, en orden de uso: <code>cubic-bezier(0.32, 0.72, 0, 1)</code>, el default de Apple para animaciones del sistema. Deceleración larga y suave. Feel premium sin ser precioso. <code>cubic-bezier(0.22, 1, 0.36, 1)</code>, la que usa Harin Nitisvaar en su portfolio. Cinematográfica. <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code>, overshoot, para cuando la interfaz necesita sentirse responsiva sin ser literal.</p>
+
+      <p class="en">(This post is a stub. I'll come back to it with the visuals.)</p>
+      <p class="es">(Este post es un borrador. Vuelvo con las visuales.)</p>
+    </section>
+
+    <!-- POST: paperverse -->
+    <section class="page" id="post-paperverse">
+      <a class="back-link nav-link" data-page="writing">
+        <span class="en">← back to writing</span>
+        <span class="es">← volver a escritos</span>
+      </a>
+
+      <h1 class="en">how I built paperverse</h1>
+      <h1 class="es">cómo construí paperverse</h1>
+      <p class="post-date en">2026.03.15 · 10 min read</p>
+      <p class="post-date es">2026.03.15 · 10 min de lectura</p>
+
+      <p class="en"><code>Paperverse</code> started as an annoyance.</p>
+      <p class="es"><code>Paperverse</code> arrancó como un fastidio.</p>
+
+      <p class="en">I wanted to read recent papers on a topic I cared about, and the only options were either Twitter threads (someone else's reading of the paper, usually wrong) or the original abstract on arxiv (jargon, no context). I wanted something in between. Editorial. Translated to neutral Spanish. With an AI button that explained the same finding for a kid, a teen, or someone technical, depending on what mood I was in.</p>
+      <p class="es">Quería leer papers recientes sobre un tema que me importaba, y las únicas opciones eran o threads de Twitter (la lectura de otra persona, casi siempre mal) o el abstract original en arxiv (jerga, sin contexto). Quería algo en el medio. Editorial. Traducido a español neutro. Con un botón de IA que explicaba el mismo hallazgo para un nene, un adolescente o alguien técnico, según el humor que tuviera.</p>
+
+      <p class="en">So I built it. <code>React</code>, <code>Vite</code>, <code>TypeScript</code>. No backend. Translation via Pollinations, free and surprisingly decent for this kind of work. Personal library in <code>localStorage</code>. The whole thing runs on someone's phone with no account, no analytics, no tracking.</p>
+      <p class="es">Así que lo construí. <code>React</code>, <code>Vite</code>, <code>TypeScript</code>. Sin backend. Traducción vía Pollinations, gratis y sorprendentemente decente para este tipo de trabajo. Biblioteca personal en <code>localStorage</code>. Todo corre en el teléfono de alguien sin cuenta, sin analytics, sin tracking.</p>
+
+      <p class="en">(This post is a stub. The full process diary is coming: false starts, what I learned about caching translations, the weird performance traps in <code>react</code> when you have a lot of inline-translated text.)</p>
+      <p class="es">(Este post es un borrador. El diario de proceso completo viene: arranques fallidos, lo que aprendí sobre cachear traducciones, las trampas raras de performance en <code>react</code> cuando tenés mucho texto traducido inline.)</p>
+    </section>
+
+  </article>
+</main>
+
+<script>
+const pages = document.querySelectorAll('.page');
+
+function navigate(target) {
+  pages.forEach(p => {
+    const isTarget = p.id === target;
+    if (isTarget) {
+      p.classList.remove('active');
+      void p.offsetWidth;
+      p.classList.add('active');
+    } else {
+      p.classList.remove('active');
+    }
+  });
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === target);
+  });
+  if (history.replaceState) {
+    const path = target === 'about' ? '/' : `/${target}`;
+    history.replaceState(null, '', path);
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('.nav-link, .back-link');
+  if (!link) return;
+  const target = link.dataset.page;
+  if (!target) return;
+  e.preventDefault();
+  navigate(target);
+});
+
+// ⌥ + letter shortcuts. Uses e.code because on macOS ⌥ + letter
+// produces special characters (å, ∑, etc) and e.key would mismatch.
+const SHORTCUTS = {
+  KeyQ: 'about',
+  KeyW: 'work',
+  KeyE: 'projects',
+  KeyR: 'writing',
+};
+
+document.addEventListener('keydown', (e) => {
+  if (!e.altKey || e.metaKey || e.ctrlKey) return;
+  if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
+  const target = SHORTCUTS[e.code];
+  if (target) {
+    e.preventDefault();
+    navigate(target);
+  }
+});
+
+// ── THEME (light/dark) ──────────────────────────────
+function setTheme(theme) {
+  document.documentElement.classList.remove('theme-light', 'theme-dark');
+  document.documentElement.classList.add('theme-' + theme);
+  localStorage.setItem('theme', theme);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = theme === 'dark' ? '#13151c' : '#fcfcfc';
+}
+function toggleTheme() {
+  const current = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light';
+  setTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+// ── LANGUAGE (en/es) ────────────────────────────────
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.documentElement.classList.remove('lang-en', 'lang-es');
+  document.documentElement.classList.add('lang-' + lang);
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('.lang-en-btn, .lang-es-btn').forEach(el => el.classList.remove('active'));
+  const activeBtn = document.querySelector('.lang-' + lang + '-btn');
+  if (activeBtn) activeBtn.classList.add('active');
+}
+function toggleLang() {
+  const current = document.documentElement.classList.contains('lang-es') ? 'es' : 'en';
+  setLang(current === 'es' ? 'en' : 'es');
+}
+
+// Init from localStorage or system preference
+const savedTheme = localStorage.getItem('theme')
+  || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+setTheme(savedTheme);
+
+const savedLang = localStorage.getItem('lang')
+  || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
+setLang(savedLang);
+
+// Wire up the buttons
+document.querySelector('.theme-toggle')?.addEventListener('click', toggleTheme);
+document.querySelector('.lang-toggle')?.addEventListener('click', toggleLang);
+
+// Initial route from path
+const initial = window.location.pathname.replace(/^\//, '') || 'about';
+if (document.getElementById(initial)) navigate(initial);
+</script>
+
+</body>
+</html>
