@@ -202,31 +202,44 @@ nav ul {
 /* ── Toggle Group: language (EN / ES) ────────────────── */
 .lang-toggle {
   display: inline-flex;
-  background: hsl(var(--rurikon-100));
-  border: 1px solid hsl(var(--border));
+  background: hsl(220 18% 92%);
+  border: 1px solid hsl(220 18% 85%);
   border-radius: 6px;
   padding: 2px;
-  gap: 1px;
+  gap: 2px;
+}
+html.theme-dark .lang-toggle {
+  background: hsl(225 22% 16%);
+  border-color: hsl(225 20% 24%);
 }
 .lang-toggle button {
   background: transparent;
   border: 0;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 4px;
   font-family: var(--font-mono);
-  font-size: 0.72em;
+  font-size: 0.78em;
   font-weight: 600;
-  color: hsl(var(--rurikon-400));
+  color: hsl(220 8% 50%);
   cursor: pointer;
   letter-spacing: 0.04em;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
 }
-.lang-toggle button:hover { color: hsl(var(--rurikon-700)); }
+html.theme-dark .lang-toggle button { color: hsl(220 14% 65%); }
+.lang-toggle button:hover { color: hsl(220 22% 25%); }
+html.theme-dark .lang-toggle button:hover { color: hsl(220 25% 88%); }
 html.lang-en .lang-toggle button[data-lang="en"],
 html.lang-es .lang-toggle button[data-lang="es"] {
-  background: hsl(var(--background));
-  color: hsl(var(--rurikon-800));
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  background: hsl(0 0% 100%);
+  color: hsl(220 28% 18%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+}
+html.theme-dark.lang-en .lang-toggle button[data-lang="en"],
+html.theme-dark.lang-es .lang-toggle button[data-lang="es"] {
+  background: hsl(225 25% 22%);
+  color: hsl(220 30% 95%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
 }
 
 /* ── Switch: theme (sun ↔ moon) ──────────────────────── */
@@ -939,10 +952,16 @@ const savedLang = localStorage.getItem('lang')
   || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
 setLang(savedLang);
 
-// Wire up the buttons
-document.querySelector('.theme-switch')?.addEventListener('click', toggleTheme);
-document.querySelectorAll('.lang-toggle button').forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+// Wire up the buttons (event delegation to be robust)
+document.querySelector('.theme-switch')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleTheme();
+});
+document.querySelector('.lang-toggle')?.addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-lang]');
+  if (!btn) return;
+  e.stopPropagation();
+  setLang(btn.dataset.lang);
 });
 
 // Initial route from path
