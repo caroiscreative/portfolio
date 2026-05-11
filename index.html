@@ -207,9 +207,8 @@ nav ul {
   align-items: center;
 }
 
-/* ── Inline minimal toggles (lang + theme share styling) ── */
-.lang-toggle,
-.theme-toggle {
+/* ── Inline minimal toggles ─────────────────────────── */
+.lang-toggle {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
@@ -217,8 +216,7 @@ nav ul {
   font-size: 0.85em;
   letter-spacing: 0.04em;
 }
-.lang-toggle button,
-.theme-toggle button {
+.lang-toggle button {
   background: transparent;
   border: 0;
   padding: 0;
@@ -230,35 +228,44 @@ nav ul {
   font-weight: 400;
   user-select: none;
 }
-.lang-toggle button:hover,
-.theme-toggle button:hover { color: hsl(220 22% 25%); }
-.lang-toggle .sep,
-.theme-toggle .sep {
+.lang-toggle button:hover { color: hsl(220 22% 25%); }
+.lang-toggle .sep {
   color: hsl(220 12% 75%);
   cursor: default;
   user-select: none;
 }
-/* active state by html class */
 html.lang-en .lang-toggle button[data-lang="en"],
-html.lang-es .lang-toggle button[data-lang="es"],
-html.theme-light .theme-toggle button[data-theme="light"],
-html.theme-dark .theme-toggle button[data-theme="dark"] {
+html.lang-es .lang-toggle button[data-lang="es"] {
   color: hsl(220 28% 18%);
   font-weight: 700;
 }
-/* dark mode */
-html.theme-dark .lang-toggle button,
-html.theme-dark .theme-toggle button { color: hsl(220 14% 60%); }
-html.theme-dark .lang-toggle button:hover,
-html.theme-dark .theme-toggle button:hover { color: hsl(220 25% 88%); }
-html.theme-dark .lang-toggle .sep,
-html.theme-dark .theme-toggle .sep { color: hsl(220 14% 32%); }
+/* dark mode for lang toggle */
+html.theme-dark .lang-toggle button { color: hsl(220 14% 60%); }
+html.theme-dark .lang-toggle button:hover { color: hsl(220 25% 88%); }
+html.theme-dark .lang-toggle .sep { color: hsl(220 14% 32%); }
 html.theme-dark.lang-en .lang-toggle button[data-lang="en"],
-html.theme-dark.lang-es .lang-toggle button[data-lang="es"],
-html.theme-dark.theme-light .theme-toggle button[data-theme="light"],
-html.theme-dark.theme-dark .theme-toggle button[data-theme="dark"] {
+html.theme-dark.lang-es .lang-toggle button[data-lang="es"] {
   color: hsl(220 30% 95%);
 }
+
+/* Single-button theme toggle — icon swaps based on current mode */
+.theme-toggle {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 1em;
+  line-height: 1;
+  color: hsl(220 8% 50%);
+  cursor: pointer;
+  transition: color 0.15s ease;
+  user-select: none;
+}
+.theme-toggle:hover { color: hsl(220 22% 25%); }
+html.theme-dark .theme-toggle { color: hsl(220 14% 65%); }
+html.theme-dark .theme-toggle:hover { color: hsl(220 25% 88%); }
+html.theme-light .theme-icon-moon,
+html.theme-dark .theme-icon-sun { display: none; }
 
 nav a {
   display: inline-flex;
@@ -583,11 +590,10 @@ a[data-page],
       <span class="sep" aria-hidden="true">·</span>
       <button type="button" data-lang="es">ES</button>
     </div>
-    <div class="theme-toggle" role="group" aria-label="Theme">
-      <button type="button" data-theme="light" aria-label="Light mode">☼</button>
-      <span class="sep" aria-hidden="true">·</span>
-      <button type="button" data-theme="dark" aria-label="Dark mode">☾</button>
-    </div>
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">
+      <span class="theme-icon-sun" aria-hidden="true">☼</span>
+      <span class="theme-icon-moon" aria-hidden="true">☾</span>
+    </button>
   </div>
 </header>
 
@@ -926,7 +932,7 @@ const savedLang = localStorage.getItem('lang')
   || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
 setLang(savedLang);
 
-// Wire up the toggles (event delegation, set value directly)
+// Wire up the toggles
 document.querySelector('.lang-toggle')?.addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-lang]');
   if (!btn) return;
@@ -934,10 +940,8 @@ document.querySelector('.lang-toggle')?.addEventListener('click', (e) => {
   setLang(btn.dataset.lang);
 });
 document.querySelector('.theme-toggle')?.addEventListener('click', (e) => {
-  const btn = e.target.closest('button[data-theme]');
-  if (!btn) return;
   e.stopPropagation();
-  setTheme(btn.dataset.theme);
+  toggleTheme();
 });
 
 // Initial route from path
