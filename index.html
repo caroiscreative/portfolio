@@ -199,91 +199,57 @@ nav ul {
   align-items: center;
 }
 
-/* ── Toggle Group: language (EN / ES) ────────────────── */
-.lang-toggle {
+/* ── Inline minimal toggles (lang + theme share styling) ── */
+.lang-toggle,
+.theme-toggle {
   display: inline-flex;
-  background: hsl(220 18% 92%);
-  border: 1px solid hsl(220 18% 85%);
-  border-radius: 6px;
-  padding: 2px;
-  gap: 2px;
-}
-html.theme-dark .lang-toggle {
-  background: hsl(225 22% 16%);
-  border-color: hsl(225 20% 24%);
-}
-.lang-toggle button {
-  background: transparent;
-  border: 0;
-  padding: 4px 10px;
-  border-radius: 4px;
+  align-items: baseline;
+  gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.78em;
-  font-weight: 600;
-  color: hsl(220 8% 50%);
-  cursor: pointer;
+  font-size: 0.85em;
   letter-spacing: 0.04em;
-  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-  user-select: none;
 }
-html.theme-dark .lang-toggle button { color: hsl(220 14% 65%); }
-.lang-toggle button:hover { color: hsl(220 22% 25%); }
-html.theme-dark .lang-toggle button:hover { color: hsl(220 25% 88%); }
-html.lang-en .lang-toggle button[data-lang="en"],
-html.lang-es .lang-toggle button[data-lang="es"] {
-  background: hsl(0 0% 100%);
-  color: hsl(220 28% 18%);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
-}
-html.theme-dark.lang-en .lang-toggle button[data-lang="en"],
-html.theme-dark.lang-es .lang-toggle button[data-lang="es"] {
-  background: hsl(225 25% 22%);
-  color: hsl(220 30% 95%);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
-}
-
-/* ── Switch: theme (sun ↔ moon) ──────────────────────── */
-.theme-switch {
+.lang-toggle button,
+.theme-toggle button {
   background: transparent;
   border: 0;
   padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: hsl(220 8% 60%);
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
+  transition: color 0.15s ease;
+  font-weight: 400;
+  user-select: none;
 }
-.theme-track {
-  display: inline-block;
-  background: hsl(var(--rurikon-100));
-  border: 1px solid hsl(var(--border));
-  border-radius: 99px;
-  width: 38px;
-  height: 22px;
-  position: relative;
-  transition: background 0.2s ease;
+.lang-toggle button:hover,
+.theme-toggle button:hover { color: hsl(220 22% 25%); }
+.lang-toggle .sep,
+.theme-toggle .sep {
+  color: hsl(220 12% 75%);
+  cursor: default;
+  user-select: none;
 }
-.theme-thumb {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  background: hsl(var(--background));
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  line-height: 1;
-  color: hsl(var(--rurikon-700));
-  transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+/* active state by html class */
+html.lang-en .lang-toggle button[data-lang="en"],
+html.lang-es .lang-toggle button[data-lang="es"],
+html.theme-light .theme-toggle button[data-theme="light"],
+html.theme-dark .theme-toggle button[data-theme="dark"] {
+  color: hsl(220 28% 18%);
+  font-weight: 700;
 }
-html.theme-dark .theme-thumb {
-  transform: translateX(16px);
-}
-html.theme-light .theme-icon-moon,
-html.theme-dark .theme-icon-sun {
-  display: none;
+/* dark mode */
+html.theme-dark .lang-toggle button,
+html.theme-dark .theme-toggle button { color: hsl(220 14% 60%); }
+html.theme-dark .lang-toggle button:hover,
+html.theme-dark .theme-toggle button:hover { color: hsl(220 25% 88%); }
+html.theme-dark .lang-toggle .sep,
+html.theme-dark .theme-toggle .sep { color: hsl(220 14% 32%); }
+html.theme-dark.lang-en .lang-toggle button[data-lang="en"],
+html.theme-dark.lang-es .lang-toggle button[data-lang="es"],
+html.theme-dark.theme-light .theme-toggle button[data-theme="light"],
+html.theme-dark.theme-dark .theme-toggle button[data-theme="dark"] {
+  color: hsl(220 30% 95%);
 }
 
 nav a {
@@ -298,9 +264,11 @@ nav a {
   font-weight: 400;
 }
 nav a:hover { color: hsl(var(--rurikon-600)); }
-nav a:hover kbd { color: hsl(var(--rurikon-500)); }
+nav a:hover kbd { color: hsl(220 18% 45%); }
+html.theme-dark nav a:hover kbd { color: hsl(220 20% 65%); }
 nav a.active { color: hsl(var(--rurikon-800)); font-weight: 700; }
-nav a.active kbd { color: hsl(var(--rurikon-600)); }
+nav a.active kbd { color: hsl(220 22% 30%); }
+html.theme-dark nav a.active kbd { color: hsl(220 25% 80%); }
 
 /* ── Filgo ink system — color per section (Level C, full tint) ── */
 /* about = negro (default rurikon ramp, no override) */
@@ -415,13 +383,14 @@ html.theme-dark nav a[data-page="writing"].active kbd  { color: hsl(var(--ink-ve
 nav a kbd {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  color: hsl(var(--rurikon-300));
+  color: hsl(220 12% 70%);
   font-weight: 400;
   background: transparent;
   border: 0;
   padding: 0;
   transition: color 0.2s ease;
 }
+html.theme-dark nav a kbd { color: hsl(220 14% 45%); }
 
 @media (max-width: 719px) {
   header.topnav { margin-bottom: var(--space-10); }
@@ -603,16 +572,14 @@ a[data-page],
   <div class="header-controls">
     <div class="lang-toggle" role="group" aria-label="Language">
       <button type="button" data-lang="en">EN</button>
+      <span class="sep" aria-hidden="true">·</span>
       <button type="button" data-lang="es">ES</button>
     </div>
-    <button type="button" class="theme-switch" aria-label="Toggle theme">
-      <span class="theme-track">
-        <span class="theme-thumb">
-          <span class="theme-icon-sun" aria-hidden="true">☼</span>
-          <span class="theme-icon-moon" aria-hidden="true">☾</span>
-        </span>
-      </span>
-    </button>
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button type="button" data-theme="light" aria-label="Light mode">☼</button>
+      <span class="sep" aria-hidden="true">·</span>
+      <button type="button" data-theme="dark" aria-label="Dark mode">☾</button>
+    </div>
   </div>
 </header>
 
@@ -952,16 +919,18 @@ const savedLang = localStorage.getItem('lang')
   || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
 setLang(savedLang);
 
-// Wire up the buttons (event delegation to be robust)
-document.querySelector('.theme-switch')?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleTheme();
-});
+// Wire up the toggles (event delegation, set value directly)
 document.querySelector('.lang-toggle')?.addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-lang]');
   if (!btn) return;
   e.stopPropagation();
   setLang(btn.dataset.lang);
+});
+document.querySelector('.theme-toggle')?.addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-theme]');
+  if (!btn) return;
+  e.stopPropagation();
+  setTheme(btn.dataset.theme);
 });
 
 // Initial route from path
