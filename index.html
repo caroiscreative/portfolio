@@ -6,8 +6,16 @@
 <title>Carolina Franco</title>
 <meta name="description" content="Carolina Franco. Designer at Lunte Studio working on a trading dashboard in capital markets. Five years across SaaS, fintech and crypto. Building Paperverse and SpaceNavigator on the side. Buenos Aires.">
 <meta name="author" content="Carolina Franco">
-<meta name="theme-color" content="#fcfcfc">
+<meta name="theme-color" content="#13151c">
 <meta name="color-scheme" content="light dark">
+
+<script>
+  // Apply theme before render to avoid flash. Default: dark.
+  (function () {
+    var saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.classList.add('theme-' + saved);
+  })();
+</script>
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Carolina Franco — designer">
@@ -85,18 +93,18 @@
   --space-10: 40px;
   --space-14: 56px;
 
-  /* Filgo ink palette — used to tint nav tabs by section */
-  --ink-azul-light:   220 60% 60%;
-  --ink-azul-medium:  223 70% 42%;
-  --ink-azul-dark:    225 80% 28%;
+  /* Filgo ink palette — brighter, more saturated */
+  --ink-azul-light:   218 85% 70%;
+  --ink-azul-medium:  218 80% 50%;
+  --ink-azul-dark:    218 85% 32%;
 
-  --ink-rojo-light:   354 70% 65%;
-  --ink-rojo-medium:  354 70% 47%;
-  --ink-rojo-dark:    354 75% 31%;
+  --ink-rojo-light:   354 80% 70%;
+  --ink-rojo-medium:  354 78% 50%;
+  --ink-rojo-dark:    354 80% 35%;
 
-  --ink-verde-light:  133 30% 52%;
-  --ink-verde-medium: 135 47% 32%;
-  --ink-verde-dark:   135 55% 19%;
+  --ink-verde-light:  148 55% 55%;
+  --ink-verde-medium: 148 65% 40%;
+  --ink-verde-dark:   148 70% 22%;
 }
 
 :root,
@@ -313,56 +321,56 @@ html.theme-dark nav a[data-page="writing"] kbd  { color: hsl(var(--ink-verde-lig
 
 /* WORK = azul (light mode) */
 html.section-work {
-  --rurikon-300: 220 50% 75%;
-  --rurikon-400: 220 60% 55%;
-  --rurikon-500: 223 65% 38%;
-  --rurikon-600: 225 75% 32%;
-  --rurikon-700: 225 80% 25%;
-  --rurikon-800: 225 85% 18%;
+  --rurikon-300: 218 75% 82%;
+  --rurikon-400: 218 78% 62%;
+  --rurikon-500: 218 78% 45%;
+  --rurikon-600: 218 82% 38%;
+  --rurikon-700: 218 85% 30%;
+  --rurikon-800: 218 88% 20%;
 }
 html.theme-dark.section-work {
-  --rurikon-300: 220 30% 38%;
-  --rurikon-400: 220 45% 55%;
-  --rurikon-500: 220 60% 72%;
-  --rurikon-600: 220 65% 80%;
-  --rurikon-700: 220 70% 88%;
-  --rurikon-800: 220 75% 94%;
+  --rurikon-300: 218 30% 38%;
+  --rurikon-400: 218 60% 58%;
+  --rurikon-500: 218 78% 72%;
+  --rurikon-600: 218 82% 80%;
+  --rurikon-700: 218 85% 88%;
+  --rurikon-800: 218 88% 94%;
 }
 
 /* PROJECTS = rojo (light mode) */
 html.section-projects {
-  --rurikon-300: 354 60% 78%;
-  --rurikon-400: 354 65% 60%;
-  --rurikon-500: 354 60% 42%;
-  --rurikon-600: 354 70% 35%;
-  --rurikon-700: 354 75% 28%;
-  --rurikon-800: 354 80% 20%;
+  --rurikon-300: 354 75% 80%;
+  --rurikon-400: 354 78% 62%;
+  --rurikon-500: 354 78% 46%;
+  --rurikon-600: 354 80% 38%;
+  --rurikon-700: 354 82% 30%;
+  --rurikon-800: 354 85% 22%;
 }
 html.theme-dark.section-projects {
-  --rurikon-300: 354 35% 40%;
-  --rurikon-400: 354 50% 58%;
-  --rurikon-500: 354 60% 72%;
-  --rurikon-600: 354 65% 80%;
-  --rurikon-700: 354 70% 88%;
-  --rurikon-800: 354 75% 94%;
+  --rurikon-300: 354 40% 42%;
+  --rurikon-400: 354 65% 60%;
+  --rurikon-500: 354 78% 72%;
+  --rurikon-600: 354 80% 80%;
+  --rurikon-700: 354 82% 88%;
+  --rurikon-800: 354 85% 94%;
 }
 
 /* WRITING = verde (light mode) */
 html.section-writing {
-  --rurikon-300: 133 25% 70%;
-  --rurikon-400: 135 35% 48%;
-  --rurikon-500: 135 50% 28%;
-  --rurikon-600: 135 55% 23%;
-  --rurikon-700: 135 60% 18%;
-  --rurikon-800: 135 65% 13%;
+  --rurikon-300: 148 50% 78%;
+  --rurikon-400: 148 60% 52%;
+  --rurikon-500: 148 65% 35%;
+  --rurikon-600: 148 70% 28%;
+  --rurikon-700: 148 72% 22%;
+  --rurikon-800: 148 75% 15%;
 }
 html.theme-dark.section-writing {
-  --rurikon-300: 133 25% 38%;
-  --rurikon-400: 133 35% 55%;
-  --rurikon-500: 133 35% 70%;
-  --rurikon-600: 133 40% 80%;
-  --rurikon-700: 133 50% 88%;
-  --rurikon-800: 133 55% 94%;
+  --rurikon-300: 148 28% 40%;
+  --rurikon-400: 148 45% 55%;
+  --rurikon-500: 148 55% 70%;
+  --rurikon-600: 148 60% 80%;
+  --rurikon-700: 148 65% 88%;
+  --rurikon-800: 148 70% 94%;
 }
 
 /* Active tab in its own dark/light tone — never tinted by section override */
@@ -608,23 +616,23 @@ a[data-page],
       <p class="section-intro en">Selected projects since 2020. Capital markets, fintech, crypto, SaaS. Most of these were built with small teams, design and engineering close together.</p>
       <p class="section-intro es">Proyectos seleccionados desde 2020. Mercados de capitales, fintech, cripto, SaaS. La mayoría se hicieron con equipos chicos, diseño e ingeniería trabajando juntos.</p>
 
-      <h2>lunte studio · capital markets</h2>
+      <h2>lunte studio — capital markets</h2>
       <p class="entry-meta en">Since 2025</p>
       <p class="entry-meta es">Desde 2025</p>
       <p class="en">Lead design on a trading dashboard for institutional clients. High information density, multiple data streams, deep workflow customization. Defined the standard trader workflow and the design system component-adoption process for the platform.</p>
       <p class="es">Diseño líder en un dashboard de trading para clientes institucionales. Alta densidad de información, múltiples streams de datos, profunda personalización del flujo de trabajo. Definí el flujo estándar del trader y el proceso de adopción de componentes en el design system de la plataforma.</p>
 
-      <h2>simplefi · crypto checkout</h2>
+      <h2>muvinai — simplefi checkout</h2>
       <p class="entry-meta">2024</p>
       <p class="en">Redesigned SimpleFi's crypto checkout while at Muvinai, working with the CEO and the engineering team. Used by 2,000+ people. Launched at <code>Aleph 2024</code> by Crecimiento Argentina.</p>
       <p class="es">Rediseñé el checkout cripto de SimpleFi en Muvinai, trabajando con el CEO y el equipo de ingeniería. Usado por más de 2.000 personas. Lanzado en <code>Aleph 2024</code> por Crecimiento Argentina.</p>
 
-      <h2>sabor crypto · ripio</h2>
+      <h2>muvinai — sabor crypto</h2>
       <p class="entry-meta">2024</p>
       <p class="en">Visual identity and product design for Sabor Crypto, in collaboration with Ripio, bringing crypto payments to 30+ restaurants in the Palermo neighborhood of Buenos Aires.</p>
       <p class="es">Identidad visual y diseño de producto para Sabor Crypto, en colaboración con Ripio. Llevamos los pagos cripto a más de 30 restaurantes del barrio de Palermo en Buenos Aires.</p>
 
-      <h2>meru · saas for repair shops</h2>
+      <h2>meru — repair shops saas</h2>
       <p class="entry-meta">2021–2024</p>
       <p class="en">SaaS platform for repair shops and spare-parts retailers. Productivity went up 30% from the first month. I led the user research that defined the platform.</p>
       <p class="es">Plataforma SaaS para talleres de reparación y tiendas de repuestos. La productividad subió 30% desde el primer mes. Lideré la investigación de usuarios que definió la plataforma.</p>
@@ -910,9 +918,8 @@ function toggleLang() {
   setLang(current === 'es' ? 'en' : 'es');
 }
 
-// Init from localStorage or system preference
-const savedTheme = localStorage.getItem('theme')
-  || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+// Init from localStorage. Default = dark; user can switch to light and we remember.
+const savedTheme = localStorage.getItem('theme') || 'dark';
 setTheme(savedTheme);
 
 const savedLang = localStorage.getItem('lang')
