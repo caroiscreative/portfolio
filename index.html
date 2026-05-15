@@ -447,6 +447,44 @@ h2::before {
 }
 h2:hover::before { opacity: 1; filter: blur(0); }
 
+/* Small arrow icon button beside a project title — opens the project in a new tab */
+.title-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35em;
+  height: 1.35em;
+  margin-left: 0.45em;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--border));
+  background: transparent;
+  color: hsl(var(--rurikon-500));
+  text-decoration: none;
+  vertical-align: -0.18em;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.title-link svg {
+  width: 0.78em;
+  height: 0.78em;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  display: block;
+}
+.title-link:hover {
+  color: hsl(var(--rurikon-700));
+  background-color: hsl(var(--rurikon-100));
+  border-color: hsl(var(--rurikon-400));
+  text-decoration: none;
+  transform: translate(1px, -1px);
+}
+.title-link:focus-visible {
+  outline: 2px solid hsl(var(--rurikon-500));
+  outline-offset: 2px;
+}
+
 h3 {
   font-weight: 700;
   font-size: 0.78em;
@@ -649,14 +687,14 @@ a[data-page],
       <p class="section-intro en">Independent work. Things I build to learn the material of the web and to give shape to ideas that don't fit a client brief.</p>
       <p class="section-intro es">Trabajo independiente. Cosas que construyo para aprender el material de la web y darle forma a ideas que no entran en un brief de cliente.</p>
 
-      <h2>paperverse</h2>
+      <h2>paperverse <a class="title-link" href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open paperverse"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h2>
       <p class="entry-meta">2026</p>
       <p class="en">An editorial reader for scientific papers in Spanish. Reads like a curated feed; explains research at three levels (5-year-old, teen, technical) with AI; translates titles and abstracts to neutral Spanish. Runs entirely client-side: no account, no analytics, no tracking.</p>
       <p class="es">Un lector editorial para papers científicos en español. Se lee como un feed curado; explica la investigación en tres niveles (5 años, adolescente, técnico) con IA; traduce títulos y abstracts a español neutro. Corre 100% client-side: sin cuenta, sin analytics, sin tracking.</p>
       <p class="en">Open source under MIT. Built with <code>React</code>, <code>Vite</code>, <code>TypeScript</code>. <a href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer">paperverse.vercel.app</a> · <a href="https://github.com/caroiscreative/paperverse" target="_blank" rel="noopener noreferrer">github</a>.</p>
       <p class="es">Open source bajo MIT. Hecho con <code>React</code>, <code>Vite</code>, <code>TypeScript</code>. <a href="https://paperverse.vercel.app/" target="_blank" rel="noopener noreferrer">paperverse.vercel.app</a> · <a href="https://github.com/caroiscreative/paperverse" target="_blank" rel="noopener noreferrer">github</a>.</p>
 
-      <h2>spacenavigator</h2>
+      <h2>spacenavigator <a class="title-link" href="https://spacenavigator-ten.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open spacenavigator"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h2>
       <p class="entry-meta">2026</p>
       <p class="en">A real-time 3D space situational awareness platform that runs entirely in the browser. Tracks 27,000+ satellites and debris objects using live TLE data from CelesTrak, propagated with SGP4 orbital mechanics. Full solar system, orbital conjunction risk scanner, debris density heatmap, space weather dashboard, deep-sky catalog, and interstellar visitor trajectories.</p>
       <p class="es">Plataforma 3D de situational awareness espacial en tiempo real, corriendo 100% en el browser. Trackea más de 27.000 satélites y debris usando datos TLE en vivo de CelesTrak, propagados con mecánica orbital SGP4. Sistema solar completo, scanner de riesgo de conjunción orbital, heatmap de densidad de debris, dashboard de clima espacial, catálogo deep-sky y trayectorias de visitantes interestelares.</p>
