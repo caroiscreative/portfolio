@@ -277,6 +277,8 @@ nav a {
   cursor: pointer;
   white-space: nowrap;
   font-weight: 400;
+  position: relative;
+  padding-bottom: 6px;
 }
 nav a:hover { color: hsl(var(--rurikon-600)); }
 nav a:hover kbd { color: hsl(220 18% 45%); }
@@ -284,6 +286,22 @@ html.theme-dark nav a:hover kbd { color: hsl(220 20% 65%); }
 nav a.active { color: hsl(var(--rurikon-800)); font-weight: 700; }
 nav a.active kbd { color: hsl(220 22% 30%); }
 html.theme-dark nav a.active kbd { color: hsl(220 25% 80%); }
+
+/* Square 2px underline indicator under the active tab — inherits section color */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+nav a.active::after { opacity: 1; }
 
 /* ── Filgo ink system — color per section (Level C, full tint) ── */
 /* about = negro (default rurikon ramp, no override) */
